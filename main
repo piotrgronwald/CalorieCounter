@@ -1,0 +1,52 @@
+class CalorieCounter:
+    def __init__(self):
+        self.calories = 0
+        self.meals = {}
+
+    def add_meal(self, meal_name, calories):
+        self.calories += calories
+        if meal_name in self.meals:
+            self.meals[meal_name] += calories
+        else:
+            self.meals[meal_name] = calories
+
+    def display_calories(self):
+        print(f"Suma spożytych kalorii: {self.calories}")
+
+    def display_meals(self):
+        print("Posiłki:")
+        for meal, calories in self.meals.items():
+            print(f"{meal}: {calories} kcal")
+
+
+def main():
+    counter = CalorieCounter()
+
+    while True:
+        print("\n1. Dodaj posiłek")
+        print("2. Wyświetl spożyte kalorie")
+        print("3. Wyświetl listę posiłków")
+        print("4. Zakończ")
+
+        choice = input("Wybierz opcję: ")
+
+        if choice == "1":
+            meal_name = input("Podaj nazwę posiłku: ")
+            calories = int(input("Podaj ilość kalorii: "))
+            counter.add_meal(meal_name, calories)
+            print("Posiłek dodany!")
+
+        elif choice == "2":
+            counter.display_calories()
+
+        elif choice == "3":
+            counter.display_meals()
+
+        elif choice == "4":
+            break
+
+        else:
+            print("Nieprawidłowa opcja!")
+
+if __name__ == "__main__":
+    main()
